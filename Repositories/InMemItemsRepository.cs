@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Catalog.Entities;
 using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.Repositories{
 
@@ -23,6 +24,18 @@ namespace Catalog.Repositories{
         public void CreateItem(Item item){
             items.Add(item);
         }
-        
+
+        public void UpdateItem(Item item)
+        {
+            int index = items.FindIndex(currItem => currItem.Id == item.Id);
+            items[index] = item;
+        }
+
+        public void DeleteItem(Guid id)
+        {
+            int index = items.FindIndex(currItem => currItem.Id == id);
+            items.RemoveAt(index);
+        }
+
     }
 }
